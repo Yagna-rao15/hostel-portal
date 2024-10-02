@@ -6,10 +6,16 @@
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
+  height: 12em;
+  padding: auto;
+  margin: auto;
+  margin-top: -5em;
+  margin-bottom: 1em;
   will-change: filter;
   transition: filter 300ms;
+  display: flex;
+  justify-content: center;
+  /* align-items; center; */
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);

@@ -1,12 +1,18 @@
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Login_Layout from './components/login/Login-Layout.jsx';
+import Login_Email from './components/login/Login-Email.jsx';
+// import Login_Password from './components/login/Login-Password.jsx';
+// import Login_Verify from './components/login/Login-Verify.jsx'
 import './App.css'
-import Login from './Login.jsx'
 
 function App() {
   return (
-    // <h1 className="text-3xl font-bold underline">
-    //   Hello world!
-    // </h1>
-    <Login />
+    <Routes>
+      <Route path="/login" element={<Login_Layout />}>
+        <Route path="/login" element={<Login_Email />} />
+      </Route>
+    </Routes>
   )
 }
 
