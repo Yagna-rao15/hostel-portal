@@ -22,6 +22,13 @@ function ForgotPass() {
         >
           Forgot password?
         </a>
+        <a
+          href="#"
+          onClick={() => nagigateToOtp()}
+          className="text-gray-800"
+        >
+          Forgot password?
+        </a>
       </div>
     </div>
   )

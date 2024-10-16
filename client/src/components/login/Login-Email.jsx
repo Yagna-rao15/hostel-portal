@@ -28,7 +28,7 @@ const Login_Email = () => {
       } else if (data.isRegistered) {
         navigate('/login/password', { state: { email } });
       } else {
-        navigate('/login/verify-email', { state: { email } });
+        navigate('/login/update-password', { state: { email } });
       }
 
     } catch (error) {

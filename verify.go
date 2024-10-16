@@ -2,9 +2,9 @@ package main
 
 import (
 	"crypto/rand"
+	"crypto/tls"
 	"fmt"
 	// "golang.org/x/crypto/bcrypt"
-	"crypto/tls"
 	"log"
 	"math/big"
 	"net/smtp"
@@ -27,10 +27,10 @@ func generateOTP() string {
 
 func sendEmail(email string, otp string) error {
 	from := "theshamelescreature@gmail.com" // Sender's email
-	password := "Yagnarao!15"               // Sender's email password or app-specific password
+	password := "ynkzvqhwgtsdjmay"          // Sender's email password or app-specific password
 	to := email                             // Recipient's email
 	smtpHost := "smtp.gmail.com"            // SMTP server (Gmail, Outlook, etc.)
-	smtpPort := "465"                       // SMTP port
+	smtpPort := "587"                       // SMTP port
 
 	message := []byte(fmt.Sprintf("Subject: Your OTP Code\n\nYour OTP code is: %s", otp))
 	auth := smtp.PlainAuth("", from, password, smtpHost)
@@ -46,7 +46,7 @@ func sendOTP(email string) error {
 	otpStore[email] = otp                              // Store OTP in memory
 	otpExpiry[email] = time.Now().Add(5 * time.Minute) // Set expiry time (5 minutes)
 	log.Println("Preparing to send email...")
-	err := sendEmail1(email, otp) // Send OTP via email
+	err := sendEmail(email, otp) // Send OTP via email
 	if err != nil {
 		log.Printf("Error sending email: %v", err)
 		return err
@@ -80,7 +80,7 @@ func verifyOTP(email string, userOTP string) bool {
 }
 
 func helper_main() {
-	email := "recipient@example.com"
+	email := "yagnarao15@gmail.com"
 
 	err := sendOTP(email)
 	if err != nil {

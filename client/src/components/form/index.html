@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+<div className="max-w-lg mx-auto border p-6 rounded-lg shadow-md">
+      <h2 className="text-2xl font-bold text-center mb-6">Register a Complaint</h2>
+
+      {/* Issue Type */}
+      <div className="mt-4">
+        <Label htmlFor="issueType">Issue Type</Label>
+        <Select name="issueType">
+          <option value="Mess">Mess</option>
+          <option value="General">General</option>
+          <option value="Carpentry">Carpentry</option>
+          <option value="Electrical">Electrical</option>
+          <option value="Bathroom">Bathroom and Sanitary</option>
+        </Select>
+      </div>
+
+      {/* Hostel */}
+      <div className="mt-4">
+        <Label htmlFor="hostel">Hostel</Label>
+        <Select name="hostel">
+          <option value="hostel1">Hostel 1</option>
+          <option value="hostel2">Hostel 2</option>
+          <option value="hostel3">Hostel 3</option>
+        </Select>
+      </div>
+
+      {/* Name */}
+      <div className="mt-4">
+        <Label htmlFor="name">Name</Label>
+        <Input type="text" placeholder="Enter your name" />
+      </div>
+
+      {/* Mobile Number */}
+      <div className="mt-4">
+        <Label htmlFor="mobile">Mobile Number</Label>
+        <Input type="tel" placeholder="Enter your mobile number" />
+      </div>
+
+      {/* Room Number */}
+      <div className="mt-4">
+        <Label htmlFor="roomNo">Room Number</Label>
+        <Input type="text" placeholder="Enter your room number" />
+      </div>
+
+      {/* Description */}
+      <div className="mt-4">
+        <Label htmlFor="description">Issue Description</Label>
+        <Textarea placeholder="Describe the issue" />
+      </div>
+
+      {/* Submit */}
+      <div className="mt-6">
+        <Button className="w-full">Submit Complaint</Button>
+      </div>
+    </div>
+  </body>
+</html>

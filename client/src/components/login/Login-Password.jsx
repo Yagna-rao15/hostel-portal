@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
 const Login_Email = () => {
-  const [email, setEmail] = useState('');
+  const location = useLocation();
+  const email = location.state?.email || ''; // Get email from route state
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
@@ -15,21 +16,20 @@ const Login_Email = () => {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:8080/login', {
+      const response = await fetch('http://localhost:8080/password', { // Make sure this matches your server endpoint
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+        body: JSON.stringify({ // Send email and password
           email: email,
+          password: password,
         })
       });
 
       const data = await response.json(); // Await this
       if (!data.valid) {
-        setMessage('Enter your valid institute mail address');
-      } else if (data.isRegistered) {
-        navigate('/login/password', { state: { email } });
+        setMessage('Wrong Email or Password Combination');
       } else {
-        navigate('/login/verify-email', { state: { email } });
+        navigate('/form', { state: { email } }); // Navigate to the correct route
       }
 
     } catch (error) {
@@ -44,10 +44,10 @@ const Login_Email = () => {
       <form onSubmit={handleSubmit}>
         <Input
           className="text-black"
-          type="email"
-          placeholder="Type your email address"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          type="password" // Ensure this is a password field
+          placeholder="Type your password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
         <br />
@@ -60,10 +60,15 @@ const Login_Email = () => {
         </Button>
         {message && <p className="text-red-500">{message}</p>}
       </form>
+      <div className="text-right mb-3 mt-3">
+        <a href="/" onClick={(e) => {
+          e.preventDefault();
+          navigate('/login/update-password', { state: { email } });
+        }} className="text-gray-800">Forgot password?</a>
+      </div>
     </div>
   );
 }
 
 export default Login_Email;
-
 
